@@ -1,29 +1,44 @@
 {
-  "name": "covid-data",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "axios": "^0.27.2",
-    "unplugin-vue-components": "^0.22.4",
-    "vue": "^3.2.25",
-    "vue-router": "^4.1.3"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
-    "@vitejs/plugin-vue": "^2.3.3",
-    "eslint": "^7.32.0 || ^8.2.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-vue": "^9.3.0",
-    "typescript": "^4.5.4",
-    "unplugin-auto-import": "^0.11.1",
-    "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
-  }
+	"name": "covid-data",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vue-tsc --noEmit && vite build",
+		"preview": "vite preview",
+		"prepare": "husky install",
+		"lint": "eslint src/**/*.* --fix"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		},
+		"lint-staged": {
+			"*.{ts,vue,json}": [
+				"eslint --fix",
+				"git add"
+			]
+		}
+	},
+	"dependencies": {
+		"axios": "^0.27.2",
+		"lint-staged": "^13.0.3",
+		"unplugin-vue-components": "^0.22.4",
+		"vue": "^3.2.25",
+		"vue-router": "^4.1.3"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^5.33.0",
+		"@typescript-eslint/parser": "^5.33.0",
+		"@vitejs/plugin-vue": "^2.3.3",
+		"eslint": "^7.32.0 || ^8.2.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.25.2",
+		"eslint-plugin-vue": "^9.3.0",
+		"husky": "^8.0.1",
+		"typescript": "^4.5.4",
+		"unplugin-auto-import": "^0.11.1",
+		"vite": "^2.9.9",
+		"vue-tsc": "^0.34.7"
+	}
 }

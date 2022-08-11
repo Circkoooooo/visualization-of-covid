@@ -15,6 +15,7 @@
 		"no-tabs": "off",
 		"no-undef": "off",
 		"import/extensions": "off",
-		"import/no-unresolved": "off"
+		"import/no-unresolved": "off",
+		"import/no-extraneous-dependencies": "off"
 	}
 }
