@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-ref()
+ref();
 </script>
 <template>
-
+	<div></div>
 </template>
