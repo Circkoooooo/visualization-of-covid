@@ -12,13 +12,13 @@
 	"husky": {
 		"hooks": {
 			"pre-commit": "lint-staged"
-		},
-		"lint-staged": {
-			"*.{ts,vue,json}": [
-				"eslint --fix",
-				"git add"
-			]
 		}
+	},
+	"lint-staged": {
+		"*.{ts,vue,json}": [
+			"eslint --fix",
+			"git add"
+		]
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
