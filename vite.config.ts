@@ -12,11 +12,20 @@ export default defineConfig({
     vue(),
     AutoImport({
       include: [/\.vue$/, /\.vue\?vue/],
-      imports: ['vue', 'vue-router', 'pinia', 'vitest'],
+      imports: ['vue', 'vue-router', 'vitest'],
       dts: './auto-imports.d.ts',
     }),
     Components({
       extensions: ['vue'],
     }),
   ],
+  server: {
+    proxy: {
+      '/dataapi': {
+        target: 'https://c.m.163.com/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dataapi/, ''),
+      },
+    },
+  },
 });

@@ -1,12 +1,13 @@
 import axiosInstance from '../axiosInstance';
+import { GlobalData } from '../types/GlobalData';
 
-export default () => new Promise((resolve, reject) => {
-  axiosInstance.get('https://interface.sina.cn/news/wap/fymap2020_data.d.json').then((res) => {
-    if (res.data.data_title === 'fymap') {
-      resolve(res.data);
+export default ():Promise<GlobalData|undefined> => new Promise((resolve, reject) => {
+  axiosInstance.get('/dataapi/ug/api/wuhan/app/data/list-total').then((res) => {
+    if (res.data.code === 10000 && res.data.msg === '成功') {
+      resolve(res.data.data);
     } else {
-      reject(res.data);
-      throw new Error('a wrong response data_title');
+      reject(new Error('fetch err'));
+      throw new Error('fetch error');
     }
   });
 });
