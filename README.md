@@ -1,4 +1,4 @@
 # 疫情可视化
 
 ## 1. 接口地址
-[新浪疫情数据](https://interface.sina.cn/news/wap/fymap2020_data.d.json)
+[163api](https://c.m.163.com/ug/api/wuhan/app/data/list-total)
