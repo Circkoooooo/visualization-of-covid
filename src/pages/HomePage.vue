@@ -9,8 +9,9 @@ const preload = async () => {
     globalDataStore.setData(globalData);
   }
 };
+
 preload();
 </script>
 <template>
-	<div>123</div>
+  <DailyIncreace></DailyIncreace>
 </template>
