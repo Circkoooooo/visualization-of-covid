@@ -3,7 +3,25 @@ import * as echarts from 'echarts';
 import useGlobalDataStore from '../store/globalDataStore';
 
 const globalDataStore = useGlobalDataStore();
-const chinaDayList = computed(() => globalDataStore.data);
+const globalData = computed(() => globalDataStore.data);
+
+const dataHandlerConfig = {
+  dateNumber: 15,
+};
+const getDate = () => {
+  const dateList = globalData.value.chinaDayList.map((item) => item.date);
+  return dateList.splice(
+    dateList.length - dataHandlerConfig.dateNumber - 1,
+    dataHandlerConfig.dateNumber,
+  );
+};
+const getDayInput = () => {
+  const dayInputList = globalData.value.chinaDayList.map((item) => item.today.input);
+  return dayInputList.splice(
+    dayInputList.length - dataHandlerConfig.dateNumber - 1,
+    dataHandlerConfig.dateNumber,
+  );
+};
 
 /**
  * 监听到chinaDayList数据后渲染数据
@@ -25,20 +43,20 @@ const setData = () => {
   if (increaceMap === null) return;
   increaceMap.setOption({
     xAxis: {
-      data: chinaDayList.value.chinaDayList.map((item) => item.date),
+      data: getDate(),
     },
     yAxis: {},
     series: [
       {
         name: '每日新增',
         type: 'line',
-        data: chinaDayList.value.chinaDayList.map((item) => item.today.input),
+        data: getDayInput(),
       },
     ],
   });
 };
 
-watch(chinaDayList, (newVal) => {
+watch(globalData, (newVal) => {
   if (newVal !== undefined && increaceMap === null) {
     renderLineMap();
     setData();
@@ -50,11 +68,12 @@ watch(chinaDayList, (newVal) => {
 });
 </script>
 <template>
-	<div id="increace"></div>
+	<div id="increace" class="increace"></div>
 </template>
+
 <style scoped>
-#increace {
-	height: 600px;
-	width: 100%;
+.increace {
+	height: 400px;
+	width: 300px;
 }
 </style>
