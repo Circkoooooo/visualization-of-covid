@@ -6,8 +6,10 @@ const globalDataStore = useGlobalDataStore();
 const globalData = computed(() => globalDataStore.data);
 
 const dataHandlerConfig = {
+  year: '2022年',
   dateNumber: 15,
 };
+
 const getDate = () => {
   const dateList = globalData.value.chinaDayList.map((item) => item.date);
   return dateList.splice(
@@ -44,8 +46,20 @@ const setData = () => {
   increaceMap.setOption({
     xAxis: {
       data: getDate(),
+      axisTick: {
+        inside: true,
+      },
+      axisLabel: {
+        formatter(value:string) {
+          const [, m, d] = value.split('-');
+          return `${m}/${d}`;
+        },
+        showMaxLabel: true,
+      },
+      boundaryGap: false,
     },
-    yAxis: {},
+    yAxis: {
+    },
     series: [
       {
         name: '每日新增',
@@ -53,6 +67,14 @@ const setData = () => {
         data: getDayInput(),
       },
     ],
+    tooltip: {
+      trigger: 'axis',
+    },
+    legend: {
+      padding: [25, 5, 5, 5],
+      formatter: `${dataHandlerConfig.year}部分 {name}`,
+      selectedMode: false,
+    },
   });
 };
 
@@ -73,7 +95,7 @@ watch(globalData, (newVal) => {
 
 <style scoped>
 .increace {
-	height: 400px;
-	width: 300px;
+	height: 25rem;
+	width: 20rem;
 }
 </style>
