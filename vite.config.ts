@@ -2,9 +2,16 @@ import { defineConfig } from 'vitest/config';
 import AutoImport from 'unplugin-auto-import/vite';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
+import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   test: {
     watch: false,
   },
@@ -24,7 +31,12 @@ export default defineConfig({
       '/dataapi': {
         target: 'https://cdn.mdeer.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dataapi/, ''),
+        rewrite: (pth) => pth.replace(/^\/dataapi/, ''),
+      },
+      '/mapapi': {
+        target: 'https://geo.datav.aliyun.com',
+        changeOrigin: true,
+        rewrite: (pth) => pth.replace(/^\/mapapi/, ''),
       },
     },
   },

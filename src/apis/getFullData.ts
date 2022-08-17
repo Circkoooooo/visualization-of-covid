@@ -1,5 +1,5 @@
-import axiosInstance from '../axiosInstance';
-import { GlobalData } from '../types/GlobalData';
+import axiosInstance from '@/axiosInstance';
+import { GlobalData } from '@/types/GlobalData';
 
 const handlerJsonp = (rawData:string) => {
   const matchData = rawData.match(/{.+}/);

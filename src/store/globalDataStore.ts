@@ -1,21 +1,18 @@
 import { defineStore } from 'pinia';
-import { GlobalData } from '../types/GlobalData';
+import { GlobalData } from '@/types/GlobalData';
 
 const useGlobalDataStore = defineStore('global', {
   state: () => ({
     data: {} as GlobalData,
+    callBackFunc: [] as Function[],
   }),
   actions: {
     setData(data:GlobalData) {
       this.data = data;
+      this.callBackFunc.forEach((item) => item());
     },
-  },
-  getters: {
-    getChinaTotal: (state:{data:GlobalData|null}) => {
-      if (state.data !== null) {
-        return state.data.chinaTotal;
-      }
-      return null;
+    setCallBack(func: Function) {
+      this.callBackFunc.push(func);
     },
   },
 });
