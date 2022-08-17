@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Api from '../apis';
-import useGlobalDataStore from '../store/globalDataStore';
+import Api from '@/apis';
+import useGlobalDataStore from '@/store/globalDataStore';
 
 const globalDataStore = useGlobalDataStore();
 const preload = async () => {
@@ -17,5 +17,6 @@ preload();
 <template>
   <div class="homepage">
     <DailyIncreace></DailyIncreace>
+    <CityDayInputMap></CityDayInputMap>
   </div>
 </template>

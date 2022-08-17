@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CityDayInputMap: typeof import('./src/components/CityDayInputMap.vue')['default']
     DailyIncreace: typeof import('./src/components/DailyIncreace.vue')['default']
     Home: typeof import('./src/pages/Home.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
