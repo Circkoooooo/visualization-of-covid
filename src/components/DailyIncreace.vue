@@ -25,10 +25,6 @@ const getDayInput = () => {
   );
 };
 
-/**
- * 监听到chinaDayList数据后渲染数据
- * 深度监听chinaDayList数据变化后，重新赋值数据实现动态式。
- */
 let increaceMap:echarts.ECharts|null = null;
 const renderLineMap = () => {
   increaceMap = echarts.init(document.getElementById('increace') as HTMLDivElement);
@@ -78,6 +74,10 @@ const setData = () => {
   });
 };
 
+/**
+ * 监听到chinaDayList数据后渲染数据
+ * 深度监听chinaDayList数据变化后，重新赋值数据实现动态式。
+ */
 watch(globalData, (newVal) => {
   if (newVal !== undefined && increaceMap === null) {
     renderLineMap();
