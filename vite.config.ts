@@ -22,7 +22,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/dataapi': {
-        target: 'https://c.m.163.com/',
+        target: 'https://cdn.mdeer.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/dataapi/, ''),
       },

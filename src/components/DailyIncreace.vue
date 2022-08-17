@@ -9,16 +9,21 @@ const dataHandlerConfig = {
   year: '2022年',
   dateNumber: 15,
 };
-
+/**
+ * 获取每日新增对应的时间
+ */
 const getDate = () => {
-  const dateList = globalData.value.chinaDayList.map((item) => item.date);
+  const dateList = globalData.value.incTrend.map((item) => item.day);
   return dateList.splice(
-    dateList.length - dataHandlerConfig.dateNumber - 1,
+    dateList.length - dataHandlerConfig.dateNumber,
     dataHandlerConfig.dateNumber,
   );
 };
+/**
+ * 处理每日新增
+ */
 const getDayInput = () => {
-  const dayInputList = globalData.value.chinaDayList.map((item) => item.today.input);
+  const dayInputList = globalData.value.incTrend.map((item) => item.sure_cnt);
   return dayInputList.splice(
     dayInputList.length - dataHandlerConfig.dateNumber - 1,
     dataHandlerConfig.dateNumber,
@@ -40,6 +45,9 @@ const renderLineMap = () => {
 const setData = () => {
   if (increaceMap === null) return;
   increaceMap.setOption({
+    grid: {
+      left: '15%',
+    },
     xAxis: {
       data: getDate(),
       axisTick: {
@@ -47,8 +55,7 @@ const setData = () => {
       },
       axisLabel: {
         formatter(value:string) {
-          const [, m, d] = value.split('-');
-          return `${m}/${d}`;
+          return value;
         },
         showMaxLabel: true,
       },
@@ -96,6 +103,6 @@ watch(globalData, (newVal) => {
 <style scoped>
 .increace {
 	height: 25rem;
-	width: 20rem;
+	width: 25rem;
 }
 </style>
