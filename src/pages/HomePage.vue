@@ -16,7 +16,14 @@ preload();
 </script>
 <template>
   <div class="homepage">
-    <DailyIncreace></DailyIncreace>
-    <CityDayInputMap></CityDayInputMap>
+    <div class="left_block">
+      <DailyIncreace></DailyIncreace>
+    </div>
+    <div class="center_block">
+      <CityDayInputMap></CityDayInputMap>
+    </div>
+    <div class="right_block">
+
+    </div>
   </div>
 </template>
