@@ -1,4 +1,4 @@
-type Trend = {
+export type Trend = {
 	cure_cnt: number,
 	day: string,
 	die_cnt: number,
@@ -7,7 +7,13 @@ type Trend = {
 	sure_cnt:number
 }
 
+export type ProvinceData = {
+	childStatistic: string,
+	currentConfirm: string,
+}
+
 export type GlobalData = {
 	trend: Trend[],
-	incTrend:Trend[]
+	incTrend: Trend[]
+	provinceArray:ProvinceData[]
 }
