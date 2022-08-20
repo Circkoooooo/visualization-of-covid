@@ -1,0 +1,7 @@
+.homepage {
+	display: flex;
+}
+
+.homepage .left_block {
+	height: 100vh;
+}

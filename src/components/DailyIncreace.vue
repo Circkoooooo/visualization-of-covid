@@ -46,7 +46,7 @@ const setData = () => {
         inside: true,
       },
       axisLabel: {
-        formatter(value:string) {
+        formatter(value: string) {
           return value;
         },
         showMaxLabel: true,
@@ -83,12 +83,13 @@ onMounted(() => {
 });
 </script>
 <template>
-	<div id="increace" class="increace"></div>
+  <div id="increace"
+      class="increace"></div>
 </template>
 
 <style scoped>
 .increace {
-	height: 25rem;
-	width: 25rem;
+  height: 25rem;
+  width: 25rem;
 }
 </style>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import './HomePage.css';
 import Api from '@/apis';
 import useGlobalDataStore from '@/store/globalDataStore';
 
@@ -11,7 +12,6 @@ const preload = async () => {
     throw new Error('cannot get global data');
   }
 };
-
 preload();
 </script>
 <template>
