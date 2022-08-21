@@ -15,7 +15,9 @@ const setData = () => {
   if (chartInstance === null) return;
   chartInstance.setOption({
     title: {
-      text: '中国地图',
+      text: '中国疫情地图',
+      left: 'center',
+      padding: [25, 5, 5, 5],
     },
     geo: [{
       map: 'china',
@@ -34,6 +36,9 @@ const setData = () => {
     scaleLimit: {
       min: 1,
       max: 3,
+    },
+    tooltip: {
+      trigger: 'axis',
     },
   });
 };
