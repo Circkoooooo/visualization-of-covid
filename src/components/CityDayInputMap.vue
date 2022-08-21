@@ -22,20 +22,35 @@ const setData = () => {
       left: 'center',
       padding: [25, 5, 5, 5],
     },
-    geo: [{
-      map: 'china',
-      roam: true,
-      label: {
-        show: true,
-        formatter: ((param:{name:string, status:string}) => {
-          const { name } = param;
-          const keys = ['市', '省', '回族自治区', '维吾尔自治区', '壮族自治区', '特别行政区', '自治区'];
-          const key = keys.find((item) => name.includes(item)) as string;
-          return name.replace(key, '');
-        }),
+    visualMap: {
+      type: 'piecewise',
+      top: 75,
+      pieces: [
+        { gt: 5000 },
+        { gt: 2000, lte: 4999 },
+        { gt: 500, lte: 1999 },
+        { gt: 100, lte: 499 },
+        { gt: 10, lte: 99 },
+        { gt: 1, lte: 9 },
+      ],
+    },
+    series: [
+      {
+        type: 'map',
+        map: 'china',
+        roam: true,
+        data: mapGeoConfigs,
+        label: {
+          show: true,
+          formatter: ((param:{name:string, status:string}) => {
+            const { name } = param;
+            const keys = ['市', '省', '回族自治区', '维吾尔自治区', '壮族自治区', '特别行政区', '自治区'];
+            const key = keys.find((item) => name.includes(item)) as string;
+            return name.replace(key, '');
+          }),
+        },
       },
-      regions: mapGeoConfigs,
-    }],
+    ],
     scaleLimit: {
       min: 1,
       max: 3,
@@ -53,10 +68,7 @@ const setMapGeoRegionConfigs = () => {
   const list:GeoConfigType[] = [];
   const nameList:GeoConfigType[] = chinaMap.features.map((item) => ({
     name: item.properties.name,
-    itemStyle: {
-      areaColor: '#fff',
-      color: '#fff',
-    },
+    value: 10,
   }));
   list.push(...nameList);
   mapGeoConfigs.splice(0);
@@ -85,17 +97,7 @@ const setAreaStyle = () => {
     const index = findTargetIndex(item);
     if (index !== -1) {
       const currentNumber = parseInt(item.currentConfirm, 10);
-      if (currentNumber >= 500) {
-        mapGeoConfigs[index].itemStyle.areaColor = '#ff0000';
-      } else if (currentNumber >= 100) {
-        mapGeoConfigs[index].itemStyle.areaColor = '#e55a4e';
-      } else if (currentNumber >= 10) {
-        mapGeoConfigs[index].itemStyle.areaColor = '#f59e83';
-      } else if (currentNumber >= 1) {
-        mapGeoConfigs[index].itemStyle.areaColor = '#fdebcf';
-      } else {
-        mapGeoConfigs[index].itemStyle.areaColor = '#e9f0f7';
-      }
+      mapGeoConfigs[index].value = currentNumber;
     }
   });
 };
