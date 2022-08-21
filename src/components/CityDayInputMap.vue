@@ -10,12 +10,15 @@ const cityDayInputMap = ref<HTMLElement | null>(null);
 const mapGeoConfigs:GeoConfigType[] = [];
 let chartInstance: echarts.ECharts | null = null;
 
+/**
+ * 渲染chart
+ */
 const setData = () => {
   echarts.registerMap('china', chinaMap as any);
   if (chartInstance === null) return;
   chartInstance.setOption({
     title: {
-      text: '中国疫情地图',
+      text: '中国疫情地图(现存确诊)',
       left: 'center',
       padding: [25, 5, 5, 5],
     },
@@ -42,8 +45,9 @@ const setData = () => {
     },
   });
 };
+
 /**
- *
+ * 处理地图的区域名称
  */
 const setMapGeoRegionConfigs = () => {
   const list:GeoConfigType[] = [];
